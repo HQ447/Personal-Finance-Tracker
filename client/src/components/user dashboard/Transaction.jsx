@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 function Transaction() {
   const [transactions, setTransactions] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [form, setForm] = useState({
     type: "expense",
     category: "",
@@ -12,6 +13,13 @@ function Transaction() {
     note: "",
   });
 
+  const fetchCategories = async () => {
+    const res = await fetch("http://localhost:9000/app/categories", {
+      headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
+    });
+    const data = await res.json();
+    setCategories(data || []);
+  };
   const fetchTransactions = async () => {
     const res = await fetch("http://localhost:9000/app/transactions", {
       headers: {
@@ -40,6 +48,7 @@ function Transaction() {
 
   useEffect(() => {
     fetchTransactions();
+    fetchCategories();
   }, []);
 
   return (
@@ -56,7 +65,38 @@ function Transaction() {
           <option value="expense">Expense</option>
           <option value="income">Income</option>
         </select>
-        <input
+        <select
+          name="category"
+          id=""
+          className="p-2 border rounded"
+          onChange={(e) => setForm({ ...form, category: e.target.value })}
+        >
+          <option>Select a Category</option>
+          {form.type == "income" ? (
+            <div>
+              <option value="Salary">Salary</option>
+              <option value="Bonus">Bonus</option>
+              <option value="Other">Other</option>
+            </div>
+          ) : (
+            <div>
+              {categories.length === 0 ? (
+                <p className="text-sm text-gray-500">No categories yet.</p>
+              ) : (
+                categories.map((cat) => (
+                  <option
+                    key={cat._id}
+                    value={cat.categoryName}
+                    className="flex items-center gap-2"
+                  >
+                    {cat.categoryName}
+                  </option>
+                ))
+              )}
+            </div>
+          )}
+        </select>
+        {/* <input
           type="text"
           name="category"
           placeholder="Category"
@@ -64,7 +104,7 @@ function Transaction() {
           onChange={(e) => setForm({ ...form, category: e.target.value })}
           className="p-2 border rounded"
           required
-        />
+        /> */}
         <input
           type="number"
           name="amount"
