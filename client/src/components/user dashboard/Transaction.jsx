@@ -33,17 +33,27 @@ function Transaction() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await fetch("http://localhost:9000/app/addTransaction", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-      },
-      body: JSON.stringify(form),
-    });
+    try {
+      await fetch("http://localhost:9000/app/addTransaction", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        },
+        body: JSON.stringify(form),
+      });
 
-    setForm({ type: "expense", category: "", amount: "", date: "", note: "" });
-    fetchTransactions();
+      setForm({
+        type: "expense",
+        category: "",
+        amount: "",
+        date: "",
+        note: "",
+      });
+      fetchTransactions();
+    } catch (error) {
+      console.log("Error :::", error);
+    }
   };
 
   useEffect(() => {
@@ -67,35 +77,31 @@ function Transaction() {
         </select>
         <select
           name="category"
-          id=""
           className="p-2 border rounded"
+          value={form.category}
           onChange={(e) => setForm({ ...form, category: e.target.value })}
+          required
         >
-          <option>Select a Category</option>
-          {form.type == "income" ? (
-            <div>
+          <option value="">Select a Category</option>
+
+          {form.type === "income" ? (
+            <>
               <option value="Salary">Salary</option>
               <option value="Bonus">Bonus</option>
               <option value="Other">Other</option>
-            </div>
+            </>
           ) : (
-            <div>
-              {categories.length === 0 ? (
-                <p className="text-sm text-gray-500">No categories yet.</p>
-              ) : (
-                categories.map((cat) => (
-                  <option
-                    key={cat._id}
-                    value={cat.categoryName}
-                    className="flex items-center gap-2"
-                  >
-                    {cat.categoryName}
-                  </option>
-                ))
-              )}
-            </div>
+            categories.map((cat) => (
+              <option key={cat._id} value={cat.categoryName}>
+                {cat.categoryName}
+              </option>
+            ))
           )}
         </select>
+        {form.type !== "income" && categories.length === 0 && (
+          <p className="text-sm text-gray-500">No categories yet.</p>
+        )}
+
         {/* <input
           type="text"
           name="category"

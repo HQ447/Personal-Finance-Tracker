@@ -267,7 +267,7 @@ function Overview() {
           </ResponsiveContainer>
         </div>
 
-        {budget && (
+        {budget?.categoryBudgets && (
           <div className="mb-8">
             <h2 className="text-lg font-semibold mb-2">Expenses vs Budget</h2>
             <ResponsiveContainer width="100%" height={300}>
