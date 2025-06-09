@@ -8,6 +8,7 @@ import { getTransactions } from "../controllers/getTransaction.js";
 import { getBudget } from "../controllers/getBudget.js";
 import { addCategory } from "../controllers/addCategory.js";
 import { getCategories } from "../controllers/getCategories.js";
+import { removeTransaction } from "../controllers/removeTransaction.js";
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ router.post("/login", login);
 router.post("/register", register);
 
 router.post("/addTransaction", tokenVerifier, addTransaction);
+router.delete("/deleteTransaction/:id", tokenVerifier, removeTransaction);
 router.post("/addBudget", tokenVerifier, setBudget);
 router.get("/transactions", tokenVerifier, getTransactions);
 router.get("/budgets", tokenVerifier, getBudget);

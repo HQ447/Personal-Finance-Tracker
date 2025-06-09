@@ -10,26 +10,67 @@ function Sidebar() {
   }
 
   return (
-    <div className="flex gap-4 flex-col px-5 py-10 w-[22%] bg-gray-200 max-h-screen">
-      <h1 className="font-bold text-2xl">Dashboard User</h1>
-      <br />
-      <div className="flex flex-col gap-3">
-        <NavLink to={""}>Overview</NavLink>
-        <NavLink to={"transaction"}>Add Transaction</NavLink>
-        <NavLink to={"budget"}>Manage Budget</NavLink>
+    <div className="flex gap-3 flex-col px-4 py-6 w-[20%] max-h-screen shadow-2xl">
+      <div className="mb-4">
+        <h1 className="font-bold text-lg bg-gradient-to-r from-emerald-700 to-blue-400 bg-clip-text text-transparent">
+          Dashboard User
+        </h1>
+        <div className="w-12 h-0.5 bg-gradient-to-r from-emerald-400 to-blue-400 mt-1"></div>
       </div>
-      <button
-        className="bg-blue-600 px-3 py-1 text-white rounded-md"
-        onClick={() => navigate("/")}
-      >
-        Home{" "}
-      </button>
-      <button
-        className="bg-red-600 px-3 py-1 text-white rounded-md"
-        onClick={handleLogout}
-      >
-        Logout{" "}
-      </button>
+
+      <nav className="flex flex-col gap-2 flex-1">
+        <NavLink
+          to=""
+          className={({ isActive }) =>
+            `px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+              isActive
+                ? "bg-gradient-to-r from-emerald-500 to-blue-500 text-white shadow-lg transform scale-105"
+                : "text-slate-300 hover:bg-slate-800/50 hover:text-white hover:translate-x-1"
+            }`
+          }
+        >
+          Overview
+        </NavLink>
+        <NavLink
+          to="transaction"
+          className={({ isActive }) =>
+            `px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+              isActive
+                ? "bg-gradient-to-r from-emerald-500 to-blue-500 text-white shadow-lg transform scale-105"
+                : "text-slate-300 hover:bg-slate-800/50 hover:text-white hover:translate-x-1"
+            }`
+          }
+        >
+          Add Transaction
+        </NavLink>
+        <NavLink
+          to="budget"
+          className={({ isActive }) =>
+            `px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+              isActive
+                ? "bg-gradient-to-r from-emerald-500 to-blue-500 text-white shadow-lg transform scale-105"
+                : "text-slate-300 hover:bg-slate-800/50 hover:text-white hover:translate-x-1"
+            }`
+          }
+        >
+          Manage Budget
+        </NavLink>
+      </nav>
+
+      <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-slate-700/50">
+        <button
+          className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 px-3 py-2 text-white text-sm font-medium rounded-lg transition-all duration-200 hover:shadow-lg hover:scale-105 transform"
+          onClick={() => navigate("/")}
+        >
+          Home
+        </button>
+        <button
+          className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 px-3 py-2 text-white text-sm font-medium rounded-lg transition-all duration-200 hover:shadow-lg hover:scale-105 transform"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
