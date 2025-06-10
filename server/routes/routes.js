@@ -14,6 +14,7 @@ import { deleteUser } from "../controllers/deleteUser.js";
 import { setRole } from "../controllers/setRole.js";
 import { getAllTransactions } from "../controllers/getAllTransactions.js";
 import { getAllUserBudget } from "../controllers/getAllUserBudget.js";
+import { getAnalyticsOverview } from "../controllers/analyticsOverview.js";
 
 const router = express.Router();
 
@@ -27,6 +28,8 @@ router.get("/getAllTransactions", tokenVerifier, getAllTransactions);
 router.get("/getAllUsersBudget", tokenVerifier, getAllUserBudget);
 
 router.post("/updateRole/:id", tokenVerifier, setRole);
+
+router.get("/admin/analytics/overview", tokenVerifier, getAnalyticsOverview);
 
 router.post("/addTransaction", tokenVerifier, addTransaction);
 router.delete("/deleteTransaction/:id", tokenVerifier, removeTransaction);
