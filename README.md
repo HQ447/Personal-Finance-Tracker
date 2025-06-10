@@ -8,7 +8,7 @@ The Personal Finance Tracker is a web-based application built with the MERN stac
 
 ### 🧑‍💼 User Features
 
-- 🔐 User Authentication (JWT-based login/register)
+- 🔐 User Authentication (JWT and Role Base)
 - ➕ Add Income and Expense Transactions
 - 📆 Filter Transactions by Date and Category
 - 📊 Visual Insights with Charts (Recharts/Chart.js)
@@ -38,6 +38,10 @@ The Personal Finance Tracker is a web-based application built with the MERN stac
 
 ## 📂 UI
 
+![Screenshot (600)](https://github.com/user-attachments/assets/c753c19b-438b-47bd-877d-74a3880a58f8)
+
+![Screenshot (599)](https://github.com/user-attachments/assets/564b0ae3-2def-4505-b05c-d06d35665eb6)
+
 ![Screenshot (589)](https://github.com/user-attachments/assets/95ed8a86-47dd-4a1d-9aeb-8bd6d7a4a95c)
 
 ![Screenshot (591)](https://github.com/user-attachments/assets/50288534-b5ab-4d02-b988-2a682568c9dd)
@@ -49,3 +53,9 @@ The Personal Finance Tracker is a web-based application built with the MERN stac
 ![Screenshot (592)](https://github.com/user-attachments/assets/1f9c5fde-553f-471b-b84b-d1409fae6e1d)
 
 ![Screenshot (593)](https://github.com/user-attachments/assets/f5c3c3c8-c1bb-4db6-aab4-98f2f3cf62aa)
+
+![Screenshot (604)](https://github.com/user-attachments/assets/c755e80a-4a4d-481a-8d0e-88ad180fb2a4)
+
+![Screenshot (603)](https://github.com/user-attachments/assets/40a043f5-3b9d-42aa-b17d-343706bfee65)
+
+![Screenshot (602)](https://github.com/user-attachments/assets/6b4a59bd-49d5-44e2-8b88-63039111894d)

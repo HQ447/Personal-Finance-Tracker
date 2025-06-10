@@ -1,4 +1,13 @@
 import React, { useEffect, useState } from "react";
+import {
+  Search,
+  Trash2,
+  AlertTriangle,
+  DollarSign,
+  Calendar,
+  Tag,
+  User,
+} from "lucide-react";
 
 function UsersTransactions() {
   const [transactions, setTransactions] = useState([]);
@@ -54,46 +63,123 @@ function UsersTransactions() {
   }, []);
 
   return (
-    <div className="p-8">
-      <h1 className="text-xl font-bold mb-4">📊 Admin Transaction Oversight</h1>
-
-      {/* Single Search Input */}
-      <input
-        className="p-2 border w-full md:w-1/2 mb-6"
-        placeholder="Search by Transaction ID, User ID, Category or Amount"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-
-      {/* Transaction List */}
-      <div className="space-y-4">
-        {filteredTransactions.map((tx) => (
-          <div
-            key={tx._id}
-            className="flex justify-between items-center border p-4 bg-white shadow-sm rounded"
-          >
-            <div>
-              <p className="text-xs text-gray-600">User ID : {tx.user}</p>
-              <p className="font-semibold">{tx.category}</p>
-              <p className="text-sm text-gray-600">
-                {tx.date?.slice(0, 10)} | {tx.type}
-              </p>
-              <p className="text-blue-600 font-bold">${tx.amount}</p>
-              {tx.amount > 10000 && (
-                <span className="text-red-600 font-semibold text-xs">
-                  ⚠ Suspicious
-                </span>
-              )}
+    <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-6">
+      <div className="">
+        {/* Header */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8 mb-8">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl">
+              <DollarSign className="w-8 h-8 text-white" />
             </div>
-            <button
-              onClick={() => handleDelete(tx._id)}
-              className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-            >
-              Delete
-            </button>
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+                Admin Transaction Oversight
+              </h1>
+              <p className="text-gray-500 mt-1">
+                Monitor and manage all user transactions
+              </p>
+            </div>
           </div>
-        ))}
-        {filteredTransactions.length === 0 && <p>No transactions found.</p>}
+        </div>
+
+        {/* Search Section */}
+        <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-6 mb-8">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Search by ID, user, category, or amount..."
+              className="w-full pl-12 pr-4 py-4 bg-white/80 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* Transactions Grid */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {filteredTransactions.map((tx) => (
+            <div
+              key={tx._id}
+              className="group bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-6 hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            >
+              {/* Transaction Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg">
+                    <DollarSign className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-2xl font-bold text-gray-800">
+                    RS {tx.amount}
+                  </span>
+                </div>
+                {tx.amount > 10000 && (
+                  <div className="flex items-center gap-1 bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">
+                    <AlertTriangle className="w-4 h-4" />
+                    <span>Suspicious</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Transaction Details */}
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-3 text-gray-600">
+                  <User className="w-4 h-4 text-blue-500" />
+                  <span className="text-sm">
+                    <span className="font-medium text-gray-800">User ID:</span>{" "}
+                    {tx.user}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 text-gray-600">
+                  <Tag className="w-4 h-4 text-purple-500" />
+                  <span className="text-sm">
+                    <span className="font-medium text-gray-800">Category:</span>{" "}
+                    {tx.category}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 text-gray-600">
+                  <Calendar className="w-4 h-4 text-green-500" />
+                  <span className="text-sm">
+                    <span className="font-medium text-gray-800">Date:</span>{" "}
+                    {tx.date?.slice(0, 10)}
+                  </span>
+                </div>
+
+                <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                  {tx.type}
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <button
+                onClick={() => handleDelete(tx._id)}
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <Trash2 className="w-4 h-4" />
+                Delete Transaction
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Empty State */}
+        {filteredTransactions.length === 0 && (
+          <div className="text-center py-16">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-12 max-w-md mx-auto">
+              <div className="p-4 bg-gray-100 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                <Search className="w-10 h-10 text-gray-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                No transactions found
+              </h3>
+              <p className="text-gray-500">
+                Try adjusting your search criteria or check back later.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

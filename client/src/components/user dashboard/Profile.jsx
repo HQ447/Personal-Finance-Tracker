@@ -152,7 +152,7 @@ const Profile = () => {
             className="w-full border p-2 rounded"
           />
 
-          <div className=" bg-amber-100 rounded-md p-3">
+          <div className="flex flex-col gap-3">
             <input
               type="password"
               placeholder="Current Password"

@@ -43,7 +43,6 @@ function App() {
             <Route path="budget" element={<Budget />} />
             <Route path="profile-settings" element={<Profile />} />
           </Route>
-          <Route />
         </Routes>
       </BrowserRouter>
     </>
