@@ -15,11 +15,22 @@ import { setRole } from "../controllers/setRole.js";
 import { getAllTransactions } from "../controllers/getAllTransactions.js";
 import { getAllUserBudget } from "../controllers/getAllUserBudget.js";
 import { getAnalyticsOverview } from "../controllers/analyticsOverview.js";
+import fileUploader from "../middlewares/fileUploader.js";
+import { updateProfile } from "../controllers/updateProfile.js";
+import { getUser } from "../controllers/getUser.js";
 
 const router = express.Router();
 
 router.post("/login", login);
 router.post("/register", register);
+
+router.put(
+  "/updateProfile",
+  tokenVerifier,
+  fileUploader.single("img"),
+  updateProfile
+);
+router.get("/user", tokenVerifier, getUser);
 
 router.get("/users", tokenVerifier, getAllUsers);
 router.delete("/deleteUser/:id", tokenVerifier, deleteUser);

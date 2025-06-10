@@ -55,6 +55,18 @@ function Sidebar() {
         >
           Manage Budget
         </NavLink>
+        <NavLink
+          to="profile-settings"
+          className={({ isActive }) =>
+            `px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+              isActive
+                ? "bg-gradient-to-r from-emerald-500 to-blue-500 text-white shadow-lg transform scale-105"
+                : "text-slate-300 hover:bg-slate-800/50 hover:text-white hover:translate-x-1"
+            }`
+          }
+        >
+          Update Profile
+        </NavLink>
       </nav>
 
       <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-slate-700/50">

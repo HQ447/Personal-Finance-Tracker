@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Settings = () => {
+const Profile = () => {
   const [profile, setProfile] = useState({
     name: "",
     email: "",
@@ -152,7 +152,7 @@ const Settings = () => {
             className="w-full border p-2 rounded"
           />
 
-          <div className="  flex flex-col gap-2">
+          <div className=" bg-amber-100 rounded-md p-3">
             <input
               type="password"
               placeholder="Current Password"
@@ -182,4 +182,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default Profile;

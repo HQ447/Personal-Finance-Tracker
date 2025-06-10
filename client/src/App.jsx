@@ -14,6 +14,7 @@ import Permissions from "./components/admin dashboard/Permissions";
 import Settings from "./components/admin dashboard/Settings";
 import AdminDashboard from "./pages/AdminDashboard";
 import UsersManagement from "./components/admin dashboard/UsersManagement";
+import Profile from "./components/user dashboard/Profile";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route index element={<Overview />} />
             <Route path="transaction" element={<Transaction />} />
             <Route path="budget" element={<Budget />} />
+            <Route path="profile-settings" element={<Profile />} />
           </Route>
           <Route />
         </Routes>
