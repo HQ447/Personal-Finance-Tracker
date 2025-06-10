@@ -44,15 +44,15 @@ The Personal Finance Tracker is a web-based application built with the MERN stac
 
 ![Screenshot (589)](https://github.com/user-attachments/assets/95ed8a86-47dd-4a1d-9aeb-8bd6d7a4a95c)
 
-![Screenshot (591)](https://github.com/user-attachments/assets/50288534-b5ab-4d02-b988-2a682568c9dd)
+![Screenshot (609)](https://github.com/user-attachments/assets/46ff734f-9172-4bf0-8eef-cd5684eb6267)
 
-![Screenshot (594)](https://github.com/user-attachments/assets/de8b0091-3ecf-4e99-8a04-2439799c41e9)
+![Screenshot (608)](https://github.com/user-attachments/assets/27d4490b-9a9e-44d9-a659-13bc802f1195)
 
-![Screenshot (595)](https://github.com/user-attachments/assets/53af04a6-3d0d-4eea-9c08-a1f35657d391)
+![Screenshot (607)](https://github.com/user-attachments/assets/b3303a87-32c1-4cf1-910f-089576bbc858)
 
-![Screenshot (592)](https://github.com/user-attachments/assets/1f9c5fde-553f-471b-b84b-d1409fae6e1d)
+![Screenshot (606)](https://github.com/user-attachments/assets/4f0735c7-a984-4499-bd52-994689524877)
 
-![Screenshot (593)](https://github.com/user-attachments/assets/f5c3c3c8-c1bb-4db6-aab4-98f2f3cf62aa)
+![Screenshot (605)](https://github.com/user-attachments/assets/b8dad893-9b67-47d7-bfbd-9efbe1b58751)
 
 ![Screenshot (604)](https://github.com/user-attachments/assets/c755e80a-4a4d-481a-8d0e-88ad180fb2a4)
 
