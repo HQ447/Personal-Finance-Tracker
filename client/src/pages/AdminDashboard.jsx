@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import Sidebar from "../components/user dashboard/Sidebar";
+import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { isTokenExpired } from "../../utils/authUtils";
+import AdminSidebar from "../components/admin dashboard/AdminSidebar";
 
-function UserDashboard() {
+function AdminDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function UserDashboard() {
 
   return (
     <div className="flex w-full h-screen">
-      <Sidebar />
+      <AdminSidebar />
       <div className="w-[78%] max-h-screen overflow-y-auto">
         <Outlet />
       </div>
@@ -41,4 +41,4 @@ function UserDashboard() {
   );
 }
 
-export default UserDashboard;
+export default AdminDashboard;

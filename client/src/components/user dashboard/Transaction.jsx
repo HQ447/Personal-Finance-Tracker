@@ -15,14 +15,14 @@ function Transaction() {
 
   const fetchCategories = async () => {
     const res = await fetch("http://localhost:9000/app/categories", {
-      headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
     const data = await res.json();
     setCategories(data || []);
   };
   const handleTransactionDeletion = async (id) => {
     try {
-      const token = localStorage.getItem("userToken");
+      const token = localStorage.getItem("token");
 
       await fetch(`http://localhost:9000/app/deleteTransaction/${id}`, {
         method: "DELETE",
@@ -36,7 +36,7 @@ function Transaction() {
   const fetchTransactions = async () => {
     const res = await fetch("http://localhost:9000/app/transactions", {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
     const data = await res.json();
@@ -51,7 +51,7 @@ function Transaction() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(form),
       });

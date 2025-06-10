@@ -3,10 +3,9 @@ import { isTokenExpired } from "../../utils/authUtils";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const userToken = localStorage.getItem("userToken");
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
   const userName = localStorage.getItem("userName");
-  const adminName = localStorage.getItem("adminName");
-  const adminToken = localStorage.getItem("adminToken");
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -16,17 +15,11 @@ function Navbar() {
 
   useEffect(() => {
     const checkTokenExpiry = () => {
-      const userToken = localStorage.getItem("userToken");
-      const adminToken = localStorage.getItem("adminToken");
+      const token = localStorage.getItem("token");
 
       let expired = false;
 
-      if (userToken && isTokenExpired(userToken)) {
-        handleLogout();
-        expired = true;
-      }
-
-      if (adminToken && isTokenExpired(adminToken)) {
+      if (token && isTokenExpired(token)) {
         handleLogout();
         expired = true;
       }
@@ -64,12 +57,13 @@ function Navbar() {
           Finance Tracker
         </h1>
       </div>
+      {/* <p className="text-white"> this is token {token}</p> */}
 
       {/* User Section */}
       <div className="flex items-center gap-4">
         {/* User Info */}
         <div className="flex items-center gap-3">
-          {userToken ? (
+          {userName ? (
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-full flex items-center justify-center">
                 <span className="text-white text-sm font-semibold">
@@ -77,15 +71,6 @@ function Navbar() {
                 </span>
               </div>
               <span className="text-slate-200 font-medium">{userName}</span>
-            </div>
-          ) : adminToken ? (
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-semibold">
-                  {adminName ? adminName.charAt(0).toUpperCase() : "A"}
-                </span>
-              </div>
-              <span className="text-slate-200 font-medium">{adminName}</span>
             </div>
           ) : (
             <div className="flex items-center gap-2">
@@ -110,7 +95,7 @@ function Navbar() {
         </div>
 
         {/* Dashboard Link */}
-        {userToken && (
+        {role == "user" && (
           <button
             onClick={() => navigate("/user-dashboard")}
             className="px-4 py-2 bg-slate-700/50 hover:bg-slate-600/50 text-slate-200 hover:text-white rounded-lg transition-all duration-200 text-sm font-medium border border-slate-600/50 hover:border-slate-500"
@@ -119,14 +104,17 @@ function Navbar() {
           </button>
         )}
 
-        {adminToken && (
-          <button className="px-4 py-2 bg-slate-700/50 hover:bg-slate-600/50 text-slate-200 hover:text-white rounded-lg transition-all duration-200 text-sm font-medium border border-slate-600/50 hover:border-slate-500">
+        {role == "admin" && (
+          <button
+            onClick={() => navigate("/admin-dashboard")}
+            className="px-4 py-2 bg-slate-700/50 hover:bg-slate-600/50 text-slate-200 hover:text-white rounded-lg transition-all duration-200 text-sm font-medium border border-slate-600/50 hover:border-slate-500"
+          >
             Admin Panel
           </button>
         )}
 
         {/* Auth Button */}
-        {userToken || adminToken ? (
+        {token ? (
           <button
             onClick={handleLogout}
             className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white rounded-lg transition-all duration-200 font-medium text-sm shadow-lg hover:shadow-xl transform hover:scale-105"

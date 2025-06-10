@@ -9,7 +9,7 @@ function Budget() {
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState("");
 
-  const token = localStorage.getItem("userToken");
+  const token = localStorage.getItem("token");
 
   // Fetch categories
   const fetchCategories = async () => {

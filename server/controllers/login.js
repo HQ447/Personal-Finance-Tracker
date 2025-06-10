@@ -6,9 +6,9 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 // Login
 export const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, role } = req.body;
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email, role });
     if (!user) return res.status(404).json({ message: "User not found" });
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -18,13 +18,9 @@ export const login = async (req, res) => {
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "2h" });
 
     res.json({
-      message: "User Login successfull",
+      message: "Login successfull",
       token,
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-      },
+      user,
     });
   } catch (err) {
     res.status(500).json({ message: "Login error in server" });

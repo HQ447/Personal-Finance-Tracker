@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "", role: "user" });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
@@ -21,8 +21,9 @@ function Login() {
 
     const data = await res.json();
     if (res.ok) {
-      localStorage.setItem("userToken", data.token);
+      localStorage.setItem("token", data.token);
       localStorage.setItem("userName", data.user.name);
+      localStorage.setItem("role", data.user.role);
       setMessage("Login successful");
       navigate("/");
       // You can redirect to dashboard or homepage
@@ -52,6 +53,10 @@ function Login() {
             onChange={handleChange}
             required
           />
+          <select name="role" onChange={handleChange} id="">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
           <button
             type="submit"
             className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600"

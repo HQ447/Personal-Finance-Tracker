@@ -40,7 +40,7 @@ function Overview() {
   }, []);
 
   const fetchData = async () => {
-    const token = localStorage.getItem("userToken");
+    const token = localStorage.getItem("token");
 
     const txRes = await fetch(`http://localhost:9000/app/transactions`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -60,7 +60,7 @@ function Overview() {
 
   const handleTransactionDeletion = async (id) => {
     try {
-      const token = localStorage.getItem("userToken");
+      const token = localStorage.getItem("token");
 
       await fetch(`http://localhost:9000/app/deleteTransaction/${id}`, {
         method: "DELETE",

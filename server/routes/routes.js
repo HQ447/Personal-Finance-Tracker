@@ -9,11 +9,24 @@ import { getBudget } from "../controllers/getBudget.js";
 import { addCategory } from "../controllers/addCategory.js";
 import { getCategories } from "../controllers/getCategories.js";
 import { removeTransaction } from "../controllers/removeTransaction.js";
+import { getAllUsers } from "../controllers/getAllUsers.js";
+import { deleteUser } from "../controllers/deleteUser.js";
+import { setRole } from "../controllers/setRole.js";
+import { getAllTransactions } from "../controllers/getAllTransactions.js";
+import { getAllUserBudget } from "../controllers/getAllUserBudget.js";
 
 const router = express.Router();
 
 router.post("/login", login);
 router.post("/register", register);
+
+router.get("/users", tokenVerifier, getAllUsers);
+router.delete("/deleteUser/:id", tokenVerifier, deleteUser);
+
+router.get("/getAllTransactions", tokenVerifier, getAllTransactions);
+router.get("/getAllUsersBudget", tokenVerifier, getAllUserBudget);
+
+router.post("/updateRole/:id", tokenVerifier, setRole);
 
 router.post("/addTransaction", tokenVerifier, addTransaction);
 router.delete("/deleteTransaction/:id", tokenVerifier, removeTransaction);
