@@ -36,6 +36,13 @@ The Personal Finance Tracker is a web-based application built with the MERN stac
 
 ---
 
+### Demo Accounts
+
+- **User:** user@gmail.com , useruser
+- **Admin:** admin@gmail.com , adminadmin
+
+---
+
 ## 📂 UI
 
 ![Screenshot (600)](https://github.com/user-attachments/assets/c753c19b-438b-47bd-877d-74a3880a58f8)

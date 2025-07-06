@@ -1,0 +1,32 @@
+BASE="http://localhost:9000/app"
+
+POST ----- "/login" --> {name,email,password}
+POST ----- "/register" --> {email,password}
+PUT ------ "/updateProfile" --> { name, email, currPassword, newPassword , img}
+
+
+
+POST------ "/addTransaction" --> { category, amount, type, date, note }
+DELETE --- "/deleteTransaction/:id"
+POST ----- "/addBudget" --> { month, totalBudget, categoryBudgets }
+
+get All transaction : GET ---- "/transactions"
+get month budget  : GET ------"/budgets"
+
+
+budget categories like food , rent , travel etc
+POST ------ "/addCategories" --> { categoryName }
+GET  ------ "/categories"
+
+
+admin**
+
+get single user:  GET ---- "/user"
+all users         GET ---- "/users"
+delete user      DELETE -- "deleteUser/:id"
+GET ------- "/getAllTransactions"
+GET ------- /getAllUsersBudget"
+POST ------- "/updateRole/:id" --> {role}
+
+admin analytics page details like totalusers , new register user , totaltranaction , top spending categories
+GET ------- "/admin/analytics/overview"
